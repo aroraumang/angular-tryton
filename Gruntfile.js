@@ -21,6 +21,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-ngdocs');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-coveralls');
 
   /**
   Function that wraps everything to allow dynamically setting/changing grunt options and config later by grunt task. This init function is called once immediately (for using the default grunt options, config, and setup) and then may be called again AFTER updating grunt (command line) options.
@@ -106,6 +107,21 @@ module.exports = function(grunt) {
           html5Mode: false
         },
         all: ['src/tryton.js']
+      },
+      coveralls: {
+        options: {
+          // LCOV coverage file relevant to every target
+          src: 'coverage-results/lcov.info',
+
+          // When true, grunt-coveralls will only print a warning rather than
+          // an error, to prevent CI builds from failing unnecessarily (e.g. if
+          // coveralls.io is down). Optional, defaults to false.
+          force: false
+        },
+        your_target: {
+          // Target-specific LCOV coverage file
+          src: 'coverage-results/extra-results-*.info'
+        },
       }
     });
 

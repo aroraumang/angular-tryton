@@ -5,8 +5,10 @@ install:
   - npm install -g grunt-cli karma@~0.10.0 bower
   - npm install
   - bower install
+  - npm install grunt-coveralls --save-dev
 script:
   - grunt
+  - grunt coveralls
 notifications:
   email:
   - ci-notify@openlabs.co.in
